@@ -41,7 +41,7 @@
     <script>
 	
 		const link = "https://drive.google.com/file/d/1iys6tdRywRy1nZWCLQD7Ak1UQHJoAWDs/view?usp=share_link";
-
+		const testNo = 1;
 	
 		async function getDataFromXML(link) {
 		  const response = await fetch(link);
@@ -62,7 +62,9 @@
 		}
 	
 		function loadCameras(mode) {
-		
+			
+			console.log("TEST - " + testNo);
+			
 			fetch("https://raw.githubusercontent.com/Ierdna30/CameraAllocationCA/main/cameras.json")
 			  .then(response => response.json())
 			  .then(data => {
