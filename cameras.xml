@@ -1,0 +1,14 @@
+<cameras>
+	<camera id="1" alloc=""></camera>
+	<camera id="2" alloc="444"></camera>
+	<camera id="3" alloc="777"></camera>
+	<camera id="4" alloc=""></camera>
+	<camera id="5" alloc=""></camera>
+	<camera id="6" alloc=""></camera>
+	<camera id="7" alloc=""></camera>
+	<camera id="8" alloc="111"></camera>
+	<camera id="9" alloc=""></camera>
+	<camera id="10" alloc=""></camera>
+	<camera id="11" alloc=""></camera>
+	<camera id="12" alloc="222"></camera>
+</cameras>
