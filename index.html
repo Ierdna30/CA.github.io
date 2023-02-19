@@ -41,12 +41,13 @@
     <script>
 	
 		const link = "https://drive.google.com/file/d/1iys6tdRywRy1nZWCLQD7Ak1UQHJoAWDs/view?usp=share_link";
-		const testNo = 5;
+		const testNo = 7;
 	    	var camData;
 	    	var at = "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";
 	
 	    	function updateJsonFile(data, filename, accessToken, username, repository) {
-		  const url = `https://api.github.com/repos/${username}/${repository}/contents/${filename}`;
+		  //const url = `https://api.github.com/repos/${username}/${repository}/contents/${filename}`;
+		  const url = `https://${username}.github.io/${repository}.github.io/${filename}`;
 		  const requestData = {
 		    method: "PUT",
 		    headers: {
