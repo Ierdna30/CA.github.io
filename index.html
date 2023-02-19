@@ -41,26 +41,40 @@
     <script>
 	
 		const link = "https://drive.google.com/file/d/1iys6tdRywRy1nZWCLQD7Ak1UQHJoAWDs/view?usp=share_link";
-		const testNo = 2;
+		const testNo = 3;
+	    	var camData;
+	    	var at = "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";
 	
-		async function getDataFromXML(link) {
-		  const response = await fetch(link);
-		  const xmlText = await response.text();
-		  const parser = new DOMParser();
-		  const xmlDoc = parser.parseFromString(xmlText, "text/xml");
-		  const dataObject = {};
-
-		  const entries = xmlDoc.getElementsByTagName("entry");
-		  for (let i = 0; i < entries.length; i++) {
-			const entry = entries[i];
-			const title = entry.getElementsByTagName("title")[0].textContent;
-			const content = entry.getElementsByTagName("content")[0].textContent;
-			dataObject[title] = content;
-		  }
-
-		  return dataObject;
+	    	function updateJsonFile(data, filename, accessToken, username, repository) {
+		  const url = `https://api.github.com/repos/${username}/${repository}/contents/${filename}`;
+		  const requestData = {
+		    method: "PUT",
+		    headers: {
+		      "Content-Type": "application/json",
+		      Authorization: `Bearer ${accessToken}`
+		    },
+		    body: JSON.stringify({
+		      message: "Update JSON file",
+		      content: btoa(JSON.stringify(data)),
+		      sha: ""
+		    })
+		  };
+		  fetch(url, requestData)
+		    .then(response => response.json())
+		    .then(result => {
+		      console.log(result);
+		    })
+		    .catch(error => console.error(error));
 		}
-	
+	    
+	    	function testUpdate() {
+			console.log("testUpdate");
+			
+			console.log("CamData2");
+			console.log(camData);
+			updateJsonFile(camData, "cameras.json", at, "Ierdna30", "CameraAllocationCA");	
+		}
+	    
 		function loadCameras(mode) {
 			
 			console.log("TEST - " + testNo);
@@ -69,10 +83,14 @@
 			  .then(response => response.json())
 			  .then(data => {
 				// Use data to access and manipulate the JSON data as a JavaScript object
+				console.log("CamData0");
 				console.log(data);
+				camData = data;
 			  })
 			  .catch(error => console.error(error));
 		
+			console.log("CamData1");
+			console.log(camData);
 		
 			//var cameras = getCameras();
 			var cameras = {'1': '111', '2': '', '3': '555', '4': '', '5': '', '6': '', '7': '222', '8': '', '9': '', '10': '', '11': '', '12': '999'};
@@ -100,6 +118,7 @@
 		<div id="dock">
 			
 		</div>
+		<button onclick="testUpdate()">Test</button>
 	</div>
   </body>
 </html>
