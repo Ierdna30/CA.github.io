@@ -41,7 +41,7 @@
     <script>
 	
 		const link = "https://drive.google.com/file/d/1iys6tdRywRy1nZWCLQD7Ak1UQHJoAWDs/view?usp=share_link";
-		const testNo = 4;
+		const testNo = 5;
 	    	var camData;
 	    	var at = "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";
 	
@@ -73,7 +73,8 @@
 			console.log("CamData2");
 			console.log(camData);
 			
-			camData[0].alloc = "888";
+		  	camData.cameras.camera[0]["@alloc"] = "888";
+			//camData[0].alloc = "888";
 			console.log("CamData3");
 			console.log(camData);
 			
