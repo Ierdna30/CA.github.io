@@ -41,11 +41,12 @@
     <script>
 	
 		const link = "https://drive.google.com/file/d/1iys6tdRywRy1nZWCLQD7Ak1UQHJoAWDs/view?usp=share_link";
-		const testNo = 0;
+		const testNo = 1;
 	    	var camData;
-	    	var at = "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";
+	    	var at = "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";
 		//		      content: btoa(JSON.stringify(data)),
 	    	function updateJsonFile(data, filename, accessToken, username, repository) {
+			console.log("accessToken: "+ at);
 		  const url = `https://api.github.com/repos/${username}/${repository}/contents/${filename}`;
 		  //const url = `https://${username}.github.io/${repository}.github.io/${filename}`;
 		  const requestData = {
