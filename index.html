@@ -41,9 +41,9 @@
     <script>
 	
 		const link = "https://drive.google.com/file/d/1iys6tdRywRy1nZWCLQD7Ak1UQHJoAWDs/view?usp=share_link";
-		const testNo = 8;
+		const testNo = 9;
 	    	var camData;
-	    	var at = "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";
+	    	var at = "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";
 		//		      content: btoa(JSON.stringify(data)),
 	    	function updateJsonFile(data, filename, accessToken, username, repository) {
 		  //const url = `https://api.github.com/repos/${username}/${repository}/contents/${filename}`;
@@ -52,7 +52,7 @@
 		    method: "PUT",
 		    headers: {
 		      "Content-Type": "application/json",
-		      Authorization: `Bearer ${accessToken}`
+		      Authorization: `Bearer ${at}`
 		    },
 		    body: JSON.stringify({
 		      message: "Update JSON file",
