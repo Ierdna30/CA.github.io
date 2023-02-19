@@ -1,9 +1,103 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Camera Allocation</title>
+    <title>Camera Docking Station</title>
+	<style>
+		html, body {
+			padding: 0;
+		}
+		body {
+			background: rgb(150,197,207);
+			background: linear-gradient(352deg, rgba(150,197,207,1) 0%, rgba(255,255,255,1) 66%);
+			background-attachment: fixed;
+
+		}
+		h1 {
+			margin: 0 auto;
+			color: #97c6d0;
+			text-align: center;
+		}
+		#dock {
+			width: 80%;
+			margin: 0 auto;
+			height: 80vh;
+		}
+		.cam {
+			float: left;
+			padding: 10px;
+			margin: 10px;
+			width: calc(22% - 20px);
+			height: 100px;
+			background-image: url("Images/greencam.png");
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: contain;
+			cursor: pointer;
+		}
+		.camDisabled {
+			background-image: url("Images/redcam.png");
+		}
+	</style>
+    <script>
+	
+		const link = "https://drive.google.com/file/d/1iys6tdRywRy1nZWCLQD7Ak1UQHJoAWDs/view?usp=share_link";
+
+	
+		async function getDataFromXML(link) {
+		  const response = await fetch(link);
+		  const xmlText = await response.text();
+		  const parser = new DOMParser();
+		  const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+		  const dataObject = {};
+
+		  const entries = xmlDoc.getElementsByTagName("entry");
+		  for (let i = 0; i < entries.length; i++) {
+			const entry = entries[i];
+			const title = entry.getElementsByTagName("title")[0].textContent;
+			const content = entry.getElementsByTagName("content")[0].textContent;
+			dataObject[title] = content;
+		  }
+
+		  return dataObject;
+		}
+	
+		function loadCameras(mode) {
+		
+			fetch("https://raw.githubusercontent.com/Ierdna30/CameraAllocationCA/main/cameras.xml")
+			  .then(response => response.json())
+			  .then(data => {
+				// Use data to access and manipulate the JSON data as a JavaScript object
+				console.log(data);
+			  })
+			  .catch(error => console.error(error));
+		
+		
+			//var cameras = getCameras();
+			var cameras = {'1': '111', '2': '', '3': '555', '4': '', '5': '', '6': '', '7': '222', '8': '', '9': '', '10': '', '11': '', '12': '999'};
+
+			// Create Cameras
+			if (mode == 0) {
+				for (var cam in cameras) {
+					console.log(cameras[cam]);
+					const camDiv = document.createElement("div");
+					camDiv.id = "cam" + cam;
+					camDiv.className = "cam";
+					camDiv.setAttribute('alloc', cameras[cam]);
+					if (cameras[cam] != "") {
+						camDiv.className = "cam camDisabled";
+					}
+					document.getElementById("dock").appendChild(camDiv);
+				}
+			}
+		}
+    </script>
   </head>
-  <body>
-	<h1>Test</h1>
+  <body onload="loadCameras(0);">
+	<div id="container">
+		<h1>Cameras</h1>
+		<div id="dock">
+			
+		</div>
+	</div>
   </body>
 </html>
